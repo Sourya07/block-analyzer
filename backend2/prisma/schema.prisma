@@ -1,0 +1,20 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Add your Postgres URL in .env
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model ScamReport {
+  id           String   @id @default(cuid())
+  address      String
+  network      String
+  reportCount  Int
+  lastReported DateTime
+  username     String? // Optional
+  phoneNumber  String? // Optional
+  email        String? // Optional
+  createdAt    DateTime @default(now())
+}
