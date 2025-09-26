@@ -3,6 +3,8 @@ import axios from 'axios';
 import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import traceRoutes from "./routes/traceRoutes";
+import graphRoutes from "./routes/graphRoutes";
 
 dotenv.config();
 
@@ -27,6 +29,9 @@ interface ScamReportAPI {
     email?: string;
 }
 
+
+app.use("/api", traceRoutes);
+app.use("/api", graphRoutes);
 // Fetch up to 10 pages
 const fetchScamReports = async (maxPages: number) => {
     let allReports: ScamReportAPI[] = [];

@@ -8,6 +8,7 @@ import Investigations from './pages/Investigations';
 import Analytics from './pages/Analytics';
 import './App.css';
 import Highrisk from './pages/Highrisk';
+import AddressGraph from './pages/AddressGraph';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path="/investigations" element={<Investigations />} />
               <Route path="/analytics" element={<Analytics />} />
               < Route path="/highrisk" element={<Highrisk />} />
+              < Route path="/addressgraph" element={< AddressGraph />} />
             </Routes>
           </main>
         </div>

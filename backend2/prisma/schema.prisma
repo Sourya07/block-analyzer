@@ -7,6 +7,24 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model Address {
+  id               Int           @id @default(autoincrement())
+  address          String        @unique
+  transactionsFrom Transaction[] @relation("from_address")
+  transactionsTo   Transaction[] @relation("to_address")
+}
+
+model Transaction {
+  id          Int      @id @default(autoincrement())
+  fromId      Int
+  toId        Int
+  value       Float
+  timestamp   DateTime
+  fromAddress Address  @relation("from_address", fields: [fromId], references: [id])
+  toAddress   Address  @relation("to_address", fields: [toId], references: [id])
+  chain       String
+}
+
 model ScamReport {
   id           String   @id @default(cuid())
   address      String

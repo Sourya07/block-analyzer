@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 interface ScamReport {
     id: string;
@@ -47,30 +48,37 @@ const Highrisk: React.FC = () => {
                 <p className="text-slate-400">No reports above 100 found.</p>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
                     {reports.map((report) => (
                         <div
+
                             key={report.id}
                             className="bg-slate-800 rounded-xl p-4 border border-slate-700 hover:shadow-lg transition-shadow"
                         >
-                            <p className="text-white font-mono break-words">{report.address}</p>
-                            <p className="text-slate-400 mt-1">
-                                Network: {report.network.toUpperCase()}
-                            </p>
-                            <p className="text-slate-400 mt-1">
-                                Reports: {report.reportCount}
-                            </p>
-                            <p className="text-slate-400 mt-1">
-                                Last Reported: {new Date(report.lastReported).toLocaleDateString()}
-                            </p>
-                            {report.username && (
-                                <p className="text-slate-400 mt-1">Username: {report.username}</p>
-                            )}
-                            {report.email && (
-                                <p className="text-slate-400 mt-1">Email: {report.email}</p>
-                            )}
-                            {report.phoneNumber && (
-                                <p className="text-slate-400 mt-1">Phone: {report.phoneNumber}</p>
-                            )}
+                            <Link
+                                to="/addressgraph"
+                                className="block bg-slate-800 rounded-xl p-6 border border-slate-700 hover:shadow-lg transition-shadow"
+                            >
+                                <p className="text-white font-mono break-words">{report.address}</p>
+                                <p className="text-slate-400 mt-1">
+                                    Network: {report.network.toUpperCase()}
+                                </p>
+                                <p className="text-slate-400 mt-1">
+                                    Reports: {report.reportCount}
+                                </p>
+                                <p className="text-slate-400 mt-1">
+                                    Last Reported: {new Date(report.lastReported).toLocaleDateString()}
+                                </p>
+                                {report.username && (
+                                    <p className="text-slate-400 mt-1">Username: {report.username}</p>
+                                )}
+                                {report.email && (
+                                    <p className="text-slate-400 mt-1">Email: {report.email}</p>
+                                )}
+                                {report.phoneNumber && (
+                                    <p className="text-slate-400 mt-1">Phone: {report.phoneNumber}</p>
+                                )}
+                            </Link>
                         </div>
                     ))}
                 </div>
